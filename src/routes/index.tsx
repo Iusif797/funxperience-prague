@@ -100,22 +100,22 @@ const reviews = [
   {
     quote: '"היה חלום, דאגו לנו לכל פינה!"',
     author: "עידן וכל החברה מרעננה",
-    img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop",
+    img: "/images/funxperience_testimonial_1.png",
   },
   {
     quote: '"לא האמנו שיש רמה כזו של שירות"',
     author: "יוסי, חתן יוני 2023",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
+    img: "/images/funxperience_testimonial_2.png",
   },
   {
     quote: '"פראג מעולם לא נראתה כל כך טוב"',
     author: "איתי, קבוצת יולי",
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
+    img: "/images/funxperience_testimonial_3.png",
   },
   {
     quote: '"פשוט וואו. חוויה של פעם בחיים"',
     author: "דניאל והחברים",
-    img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=600&auto=format&fit=crop",
+    img: "/images/funxperience_testimonial_4.png",
   },
 ];
 
