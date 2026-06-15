@@ -624,7 +624,7 @@ function LandingPage() {
             <img
               src="/images/prague_friends_front.png"
               alt="Friends Foreground Parallax"
-              className="w-full h-full object-cover object-[center_15%]"
+              className="w-full h-full object-cover object-[center_15%] md:object-center"
               style={{
                 maskImage: "linear-gradient(to top, black 25%, transparent 100%)",
                 WebkitMaskImage: "linear-gradient(to top, black 25%, transparent 100%)",
