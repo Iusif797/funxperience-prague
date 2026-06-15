@@ -385,61 +385,144 @@ function LandingPage() {
       </header>
 
       <div
-        className={`fixed inset-0 z-50 bg-black/70 backdrop-blur-md transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-50 bg-black/80 backdrop-blur-md transition-opacity duration-300 md:hidden ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMenuOpen(false)}
       >
         <div
-          className={`fixed inset-y-0 left-0 w-4/5 max-w-xs bg-surface p-6 shadow-2xl transition-transform duration-300 flex flex-col justify-between ${
+          className={`fixed inset-y-0 left-0 w-4/5 max-w-xs bg-black/90 backdrop-blur-2xl border-r border-white/10 p-6 shadow-2xl transition-transform duration-300 flex flex-col justify-between ${
             menuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
           <div>
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/5">
               <Logo />
               <button
                 onClick={() => setMenuOpen(false)}
-                className="p-2 text-foreground hover:text-primary transition-colors"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-foreground hover:text-primary hover:bg-white/10 transition-all duration-200"
                 aria-label="close menu"
               >
                 <Icon name="close" className="text-2xl" />
               </button>
             </div>
-            <nav className="flex flex-col gap-6 text-lg font-medium">
+            <nav className="flex flex-col gap-5 text-base font-semibold">
+              <a
+                href="#"
+                onClick={() => setMenuOpen(false)}
+                className="hover:text-primary transition-colors flex items-center gap-2 py-1"
+              >
+                <Icon name="home" className="text-xl" />
+                ראשי
+              </a>
               <a
                 href="#packages"
                 onClick={() => setMenuOpen(false)}
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors flex items-center gap-2 py-1"
               >
-                חבילות
+                <Icon name="loyalty" className="text-xl" />
+                חבילות VIP
               </a>
               <a
                 href="#configurator"
                 onClick={() => setMenuOpen(false)}
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors flex items-center gap-2 py-1"
               >
-                תכנון
+                <Icon name="tune" className="text-xl" />
+                בונה החבילות
               </a>
               <a
                 href="#reviews"
                 onClick={() => setMenuOpen(false)}
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors flex items-center gap-2 py-1"
               >
-                המלצות
+                <Icon name="rate_review" className="text-xl" />
+                המלצות החוגגים
+              </a>
+              <a
+                href="#reviews"
+                onClick={() => setMenuOpen(false)}
+                className="hover:text-primary transition-colors flex items-center gap-2 py-1"
+              >
+                <Icon name="photo_camera" className="text-xl" />
+                גלריה
+              </a>
+              <a
+                href="#configurator"
+                onClick={() => setMenuOpen(false)}
+                className="hover:text-primary transition-colors flex items-center gap-2 py-1"
+              >
+                <Icon name="quiz" className="text-xl" />
+                שאלות ותשובות
               </a>
             </nav>
           </div>
-          <a
-            href="https://wa.me/420777000000"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMenuOpen(false)}
-            className="w-full text-center bg-primary text-on-primary font-bold py-3.5 rounded-full text-base hover:opacity-90 transition shadow-lg"
-          >
-            צרו קשר
-          </a>
+          <div>
+            <div className="flex items-center justify-center gap-6 py-4 border-t border-white/5 mb-4">
+              <a
+                href="#"
+                className="text-on-surface-variant hover:text-primary transition-colors duration-200"
+                aria-label="Instagram"
+              >
+                <svg
+                  className="w-6 h-6 fill-none stroke-current"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a
+                href="#"
+                className="text-on-surface-variant hover:text-primary transition-colors duration-200"
+                aria-label="Telegram"
+              >
+                <svg
+                  className="w-6 h-6 fill-none stroke-current"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21.5 2L2 11.5L8.5 14L18.5 6L11 15.5L11.5 21L15.5 17.5L20 20L21.5 2Z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                className="text-on-surface-variant hover:text-primary transition-colors duration-200"
+                aria-label="WhatsApp"
+              >
+                <svg
+                  className="w-6 h-6 fill-none stroke-current"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+            <a
+              href="https://wa.me/420777000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="block w-full text-center bg-primary text-on-primary font-bold py-3.5 rounded-full text-base hover:scale-[1.02] active:scale-95 transition-all shadow-lg"
+            >
+              צרו קשר
+            </a>
+          </div>
         </div>
       </div>
 
