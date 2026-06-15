@@ -130,61 +130,60 @@ function Icon({ name, className = "" }: { name: string; className?: string }) {
   return <span className={`material-symbols-outlined ${className}`}>{name}</span>;
 }
 
-function Logo() {
+function Logo({ className = "" }: { className?: string }) {
   return (
-    <div className="flex items-center gap-3">
+    <div className={`flex items-center gap-3 ${className}`}>
       <svg
-        className="w-9 h-9 text-primary drop-shadow-[0_0_8px_var(--primary)]"
-        viewBox="0 0 100 100"
+        className="w-10 h-10 drop-shadow-[0_0_8px_rgba(237,192,113,0.3)]"
+        viewBox="0 0 120 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="oklch(0.88 0.09 220)" />
-            <stop offset="100%" stopColor="oklch(0.82 0.12 80)" />
+          <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFFFFF" />
+            <stop offset="50%" stopColor="#B0B5BC" />
+            <stop offset="100%" stopColor="#787C82" />
           </linearGradient>
-          <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFEAA5" />
+            <stop offset="50%" stopColor="#D4AF37" />
+            <stop offset="100%" stopColor="#AA7C11" />
+          </linearGradient>
+          <filter id="sparkGlow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
+
         <path
-          d="M50 8 L88 28 V72 L50 92 L12 72 V28 Z"
-          stroke="url(#logoGrad)"
-          strokeWidth="4"
-          fill="none"
+          d="M25 70 L38 28 H78 L74 38 H46 L42 48 H70 L66 58 H38 L34 70 Z"
+          fill="url(#silverGrad)"
         />
-        <path
-          d="M36 32 H64 V42 H48 V52 H60 V62 H48 V76 H36 Z"
-          fill="url(#logoGrad)"
-          filter="url(#logoGlow)"
-        />
-        <path
-          d="M54 32 L69 52 L84 32"
-          stroke="url(#logoGrad)"
-          strokeWidth="4"
-          strokeLinecap="round"
-          filter="url(#logoGlow)"
-        />
-        <path
-          d="M69 52 L84 76"
-          stroke="url(#logoGrad)"
-          strokeWidth="4"
-          strokeLinecap="round"
-          filter="url(#logoGlow)"
-        />
-        <path
-          d="M54 76 L65 58"
-          stroke="url(#logoGrad)"
-          strokeWidth="4"
-          strokeLinecap="round"
-          filter="url(#logoGlow)"
-        />
+
+        <path d="M54 70 L72 38 H86 L68 70 Z" fill="url(#goldGrad)" />
+        <path d="M84 70 L55 38 H69 L98 70 Z" fill="url(#goldGrad)" />
+
+        <path d="M60 48 L100 15 L98 25 Z" fill="url(#goldGrad)" />
+
+        <g filter="url(#sparkGlow)" transform="translate(100, 15)">
+          <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
+          <path
+            d="M0 -15 L0 15 M-15 0 L15 0 M-8 -8 L8 8 M-8 8 L8 -8"
+            stroke="#FFEAA5"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </g>
       </svg>
-      <span className="font-display-lg text-xl font-black tracking-tight text-white select-none">
-        Fun<span className="text-primary font-black">X</span>perience
-      </span>
+      <div className="flex flex-col text-right leading-none">
+        <span className="font-display-lg text-lg font-black tracking-tight text-white select-none leading-none">
+          FUN<span className="text-secondary font-black">X</span>PERIENCE
+        </span>
+        <span className="text-[9px] text-secondary font-bold tracking-[0.25em] mr-[1px] leading-none mt-1 select-none">
+          PRAGUE
+        </span>
+      </div>
     </div>
   );
 }
@@ -313,8 +312,15 @@ function LandingPage() {
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
       const y = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
@@ -333,6 +339,7 @@ function LandingPage() {
     }, 150);
 
     return () => {
+      window.removeEventListener("resize", checkMobile);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(timer);
@@ -357,18 +364,18 @@ function LandingPage() {
               המלצות
             </a>
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             <a
               href="https://wa.me/420777000000"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary text-on-primary font-bold py-2 px-5 rounded-full text-sm hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_15px_rgba(140,200,255,0.3)]"
+              className="hidden sm:inline-flex bg-primary text-on-primary font-bold py-2 px-5 rounded-full text-sm hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_15px_rgba(140,200,255,0.3)]"
             >
               צרו קשר
             </a>
             <button
               onClick={() => setMenuOpen(true)}
-              className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+              className="md:hidden p-2 text-foreground hover:text-primary transition-colors flex items-center justify-center"
               aria-label="open menu"
             >
               <Icon name="menu" className="text-2xl" />
@@ -441,7 +448,9 @@ function LandingPage() {
           <div
             className="absolute inset-0 select-none pointer-events-none"
             style={{
-              transform: `translate3d(${mousePos.x * -12}px, ${mousePos.y * -12 + scrollY * 0.12}px, 0) scale(1.08)`,
+              transform: isMobile
+                ? "none"
+                : `translate3d(${mousePos.x * -12}px, ${mousePos.y * -12 + scrollY * 0.12}px, 0) scale(1.08)`,
               transition: "transform 0.15s cubic-bezier(0.25, 0.8, 0.25, 1)",
             }}
           >
@@ -456,7 +465,9 @@ function LandingPage() {
           <div
             className="absolute inset-0 select-none pointer-events-none mix-blend-screen opacity-50"
             style={{
-              transform: `translate3d(${mousePos.x * -30}px, ${mousePos.y * -30 + scrollY * 0.3}px, 0) scale(1.15)`,
+              transform: isMobile
+                ? "none"
+                : `translate3d(${mousePos.x * -30}px, ${mousePos.y * -30 + scrollY * 0.3}px, 0) scale(1.15)`,
               transition: "transform 0.15s cubic-bezier(0.25, 0.8, 0.25, 1)",
             }}
           >
@@ -468,9 +479,9 @@ function LandingPage() {
           </div>
 
           <div
-            className="relative z-20 w-full max-w-7xl mx-auto px-container-margin text-center"
+            className="relative z-20 w-full max-w-7xl mx-auto px-container-margin text-center pb-[38vh] md:pb-0"
             style={{
-              transform: `translate3d(0, ${scrollY * 0.45}px, 0)`,
+              transform: isMobile ? "none" : `translate3d(0, ${scrollY * 0.45}px, 0)`,
               transition: "transform 0.1s ease-out",
             }}
           >
@@ -519,16 +530,18 @@ function LandingPage() {
           </div>
 
           <div
-            className="absolute inset-x-0 bottom-0 h-[28vh] sm:h-[38vh] md:h-[45vh] z-30 pointer-events-none overflow-hidden"
+            className="absolute inset-x-0 bottom-0 h-[38vh] md:h-[45vh] z-30 pointer-events-none overflow-hidden"
             style={{
-              transform: `translate3d(${mousePos.x * 20}px, ${mousePos.y * 15 + scrollY * 0.55}px, 0) scale(1.05)`,
+              transform: isMobile
+                ? "none"
+                : `translate3d(${mousePos.x * 20}px, ${mousePos.y * 15 + scrollY * 0.55}px, 0) scale(1.05)`,
               transition: "transform 0.15s cubic-bezier(0.25, 0.8, 0.25, 1)",
             }}
           >
             <img
               src="/images/prague_friends_front.png"
               alt="Friends Foreground Parallax"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-[center_15%]"
               style={{
                 maskImage: "linear-gradient(to top, black 25%, transparent 100%)",
                 WebkitMaskImage: "linear-gradient(to top, black 25%, transparent 100%)",
